@@ -2,8 +2,24 @@ import React from 'react';
 
 class Header extends React.Component {
 
-    inputChangeHandler(event){
-        console.log(event.target.value);
+    state = {
+        name:'Francis',
+        title:'The keywords are:',
+        keywords: '',
+        count:0
+    }
+
+
+    inputChangeHandler=(event)=>{
+        this.setState({
+            keywords: event.target.value
+        })
+    }
+
+    addOne = () =>{
+        this.setState((state,props) =>({
+            count: state.count+1
+        }))
     }
 
     render(){
@@ -14,6 +30,12 @@ class Header extends React.Component {
                     onChange={this.inputChangeHandler} 
 
                 />
+                <div>{this.state.title}</div>
+                <div>{this.state.keywords}</div>
+
+                <br />
+                <div>{this.state.count}</div>
+                <button onClick={ () => this.addOne() }>Add One</button>
             </header>
         )
     }
