@@ -3,12 +3,18 @@ import React from 'react';
 class Header extends React.Component {
 
     state = {
-            keywords: '',
+        //  active: false
+            active: 'active',
+            keywords: ''
         }
 
 
-    inputChangeHandler=(event)=>{
+    inputChangeHandler = (event) => {
+
+        const value = event.target.value === '' ? 'active' : 'not-active';
+
         this.setState({
+            active:value,
             keywords: event.target.value
         })
     }
@@ -16,7 +22,8 @@ class Header extends React.Component {
 
     render(){
         return (
-            <header>
+        //  <header style ={{background:`${this.state.active ? 'red' : 'blue'}`}}>
+            <header className ={this.state.active }>
                 <div className ="logo">Logo</div>
                 <input 
                     onChange={this.inputChangeHandler} 
