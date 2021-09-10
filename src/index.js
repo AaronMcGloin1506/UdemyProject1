@@ -6,6 +6,7 @@ import JSON from './db.json';
 
 import Header from './components/header';
 import News_list from './components/news_list';
+import Life from './components/lifecycle';
 import Footer from './components/footer'
 
 
@@ -15,7 +16,8 @@ class App extends Component {
         news: JSON,
         filtered:JSON,
         footerText: 'I am a happy footer',
-        keywords: ''
+        keywords: '',
+        active:true
     }
 
     getKeyWords = (event) => {
@@ -44,8 +46,17 @@ class App extends Component {
                 <News_list 
                     news={filtered}>
                         <br />
-                        <h1>I am a child</h1>
-                    </News_list>
+                        <h1>I am a child</h1>                    
+                </News_list>
+
+                { this.state.active ? <Life/> : null }
+                <button 
+                    onClick={ () => {
+                        this.setState({active:!this.state.active})
+                    }}
+                >Action</button>
+                
+
                 <Footer footerText={footerText}/>
              </>
 
